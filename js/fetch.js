@@ -10,12 +10,22 @@ fetch("https://swapi.co/api/people")
     })
     .then((response) => response.json())
     .then(json => {
-        console.log(data.results[1].name)
-
-
-        console.log(data.results.length)
         data.homeworld = json
-        console.log(`${data.name} su merjor amigo es ${json.name}, código con FETCH`)
-        console.log(`${data.name} su merjor amigo es ${data.homeworld.name}, codigo con igualdad de objeto con FETCH`)
-    })
-    .catch((err) => handleError(err))
+        let lista = ""
+        let options = ""
+        let contenido = ""
+        for (var i = 0; i < data.results.length; i++) {   
+            lista += data.results[i].name + "<br>"
+            options += "<option>" + data.results[i].eye_color + "</option>"
+            contenido += "<tr>"
+            contenido += "<td>" + data.results[i].name + "</td>"
+            contenido += "<td>" + data.results[i].eye_color + "</td>" 
+            contenido += "</tr>"
+            }
+        document.getElementById("listado").innerHTML = lista
+        document.getElementById("options").innerHTML = options
+        document.getElementById("tabla").innerHTML = contenido
+        document.getElementById("exampleModal").innerHTML = lista
+        
+        }
+       ) 
